@@ -1,0 +1,38 @@
+@model List<Movie>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Page</title>
+  <link href="path/to/your/styles.css" rel="stylesheet">
+</head>
+<body class="bg-image">
+
+  <div class="container-fluid py-5 text-center bg-dark text-light">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="display-4 mb-3">Top 10 Películas sobre Herramientas de Programación</h1>
+        <p class="lead">Descubre las mejores películas relacionadas con la programación que no te puedes perder.</p>
+      </div>
+    </div>
+  </div>
+
+  <ol class="list-group">
+    @foreach (var item in Model)
+    {
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a asp-action="Detail" asp-route-id="@item.Code">@item.Name</a>
+        <a asp-action="Delete" asp-route-id="@item.Code" asp-route-name="@item.Name" class="btn btn-danger">Borrar</a>
+      </li>
+    }
+  </ol>
+
+  <div class="text-center">
+    <a href="@Url.Action("Create")" class="btn btn-primary rounded-pill py-2 px-4 mt-1">
+      <i class="fas fa-plus-circle me-2"></i>Nueva Peli
+    </a>
+  </div>
+
+</body>
+</html>
